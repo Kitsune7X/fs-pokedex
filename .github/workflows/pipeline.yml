@@ -13,14 +13,10 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies
-        working-directory: ./fs-pokedex
         run: npm install
       - name: Check style
-        working-directory: ./fs-pokedex
         run: npm run eslint
       - name: Test
-        working-directory: ./fs-pokedex
         run: npm test
       - name: Build
-        working-directory: ./fs-pokedex
         run: npm run build
