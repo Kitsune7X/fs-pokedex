@@ -18,3 +18,9 @@ jobs:
       - name: Check style
         working-directory: ./fs-pokedex
         run: npm run eslint
+      - name: Test
+        working-directory: ./fs-pokedex
+        run: npm test
+      - name: Build
+        working-directory: ./fs-pokedex
+        run: npm run build
