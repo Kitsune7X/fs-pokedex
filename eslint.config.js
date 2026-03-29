@@ -11,6 +11,8 @@ module.exports = [
       '.eslintrc.js',
       'node_modules/**',
       'dist/**',
+      'playwright-report/**',
+      'playwright.config.js',
     ],
   },
   js.configs.recommended,
