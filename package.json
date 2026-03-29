@@ -8,7 +8,7 @@
     "start-prod": "node app.js",
     "test": "jest",
     "test:e2e": "playwright test --ui test/fs-pokedex.spec.js",
-    "eslint": "eslint \"./**/*.{js,jsx}\"",
+    "eslint": "eslint './**/*.{js,jsx}'",
     "build": "webpack --mode production"
   },
   "repository": {
