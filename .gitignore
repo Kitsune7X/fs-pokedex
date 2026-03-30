@@ -1,6 +1,7 @@
 fs-pokedex/dist/
 node_modules/
 .idea/
+requests/
 
 # Playwright
 /test-results/
