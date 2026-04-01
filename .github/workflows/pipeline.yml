@@ -49,12 +49,11 @@ jobs:
         if: ${{ success() }}
         with:
           webhook: ${{ secrets.FS_DISCORD_WEBHOOK }}
-          status: ${{ job.status }}
-          content: 'Testing content'
-          title: 'Deployment successful!'
+          content: '#Deployment Successful!'
+          title: 'Deployment Details'
           description: |
             **Commit**: `${{ github.sha }}`
-            **Message**: `${{ join(github.event.commits.*.message) }}`
+            **Message**: `${{ github.event.commits.message }}`
             **Author**: `${{ github.actor }}`
 
   tag_release:
