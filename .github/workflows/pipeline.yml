@@ -50,7 +50,7 @@ jobs:
       # Check out the current repo first !important
       - uses: actions/checkout@v6
       - name: Bump version and push tag
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ !contains(join(github.event.commits.*.message), '#skip') && github.event_name == 'push'}}
         uses: anothrNick/github-tag-action@1.75.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
