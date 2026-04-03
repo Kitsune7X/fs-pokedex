@@ -71,7 +71,7 @@ jobs:
 
       - name: Trigger deployment
         # Need to config it so that if a commit message contain #skip, it is not deployed
-        if: ${{ !contains(join(github.event.commits.*.message), '#skip') && github.event_name == 'push'}}
+        if: ${{ !contains(join(github.event.commits.*.message, ', '), '#skip') && github.event_name == 'push'}}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
 
   notify_success:
@@ -90,7 +90,7 @@ jobs:
           title: 'Deployment Details'
           description: |
             **Commit**: `${{ github.sha }}`
-            **Message**: `${{ join(github.event.commits.message) }}`
+            **Message**: `${{ join(github.event.commits.*.message, ', ') }}`
             **Author**: `${{ github.actor }}`
           nodetail: true
 
