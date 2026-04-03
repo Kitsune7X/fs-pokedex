@@ -4,7 +4,7 @@ import { useApi } from './useApi'
 import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
 import PokemonPage from './PokemonPage'
-// import PokemonList from './PokemonList'
+import PokemonList from './PokemonList'
 
 const mapResults = ({ results }) =>
   results.map(({ url, name }) => ({

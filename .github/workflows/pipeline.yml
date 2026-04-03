@@ -24,7 +24,13 @@ jobs:
       - name: Build
         run: npm run build
 
-        # Send Discord Notification when the build is failure
+  notify_failure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses:
+          actions/setup-node@v6
+          # Send Discord Notification when the build is failure
       - name: Build failure notification
         uses: sarisia/actions-status-discord@v1.16.0
         if: ${{ failure() }}
@@ -41,6 +47,12 @@ jobs:
             **Workflow**: `${{ github.workflow }}`
             **Job**: `${{ github.job }}`
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
@@ -52,15 +64,16 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: Testing message
-        if: ${{ contains(join(github.event.commits.*.message), '#skip')}}
-        run: echo 'HERE!'
-
       - name: Trigger deployment
         # Need to config it so that if a commit message contain #skip, it is not deployed
         if: ${{ !contains(join(github.event.commits.*.message), '#skip') && github.event_name == 'push'}}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
 
+  notify_success:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       # Send Discord notification
       - name: Successful Deployment Discord Notification
         uses: sarisia/actions-status-discord@v1.16.0
